@@ -1,8 +1,15 @@
 BASE_RATING = 1500
 
-# greater than elo threshold: k-factor
-K_FACTORS = {
-    0: 32,
-    (BASE_RATING*1.4): 24,
-    (BASE_RATING*1.6): 1.6
-}
+K_FACTOR_MATCHES_THRESHOLD = 5
+K_FACTOR_MATCHES_VALUE = 40
+
+K_FACTOR_THRESHOLDS = [
+    BASE_RATING*1.4,
+    BASE_RATING*1.6
+]
+
+K_FACTORS = [
+    32,
+    24,
+    16
+]
