@@ -10,10 +10,14 @@ def get_k_factor(player_rating, player_num_matches):
             return constants.K_FACTORS[i]
     return constants.K_FACTORS[-1]
 
-def expected_score(rating_function, player_a, player_b):
-    rating_a = rating_function(player_a)
-    rating_b = rating_function(player_b)
+def expected_score(rating_a, rating_b):
     return 1/float(1+math.pow(10, (rating_b-rating_a)/float(400)))
 
 def updated_rating(original_rating, k_factor, expected, actual):
     return original_rating+k_factor*(actual-expected)
+
+def new_rating(rating_function, player_a, player_b, score):
+    rating_a = rating_function(player_a)
+    rating_b = rating_function(player_b)
+    expected = expected_score(rating_a, rating_b)
+    return updated_rating(rating_a, k_factor, expected, score)
