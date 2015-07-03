@@ -1,2 +1,2 @@
-import constants
+from constants import Result
 import elo
