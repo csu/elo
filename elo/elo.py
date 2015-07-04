@@ -16,9 +16,14 @@ def expected_score(rating_a, rating_b):
 def updated_rating(original_rating, k_factor, expected, actual):
     return original_rating+k_factor*(actual-expected)
 
-def new_rating(rating_function, num_matches_function, player_a, player_b, score):
-    rating_a = rating_function(player_a)
-    rating_b = rating_function(player_b)
-    k_factor = num_matches_function(player_a)
+def new_rating(rating_a, rating_b, num_matches_a, score):
+    k_factor = get_k_factor(rating_a, num_matches_a)
     expected = expected_score(rating_a, rating_b)
     return updated_rating(rating_a, k_factor, expected, score)
+
+
+def new_rating_funcs(rating_function, num_matches_function, player_a, player_b, score):
+    rating_a = rating_function(player_a)
+    rating_b = rating_function(player_b)
+    num_matches_a = num_matches_function(player_a)
+    return new_rating(rating_a, rating_b, num_matches_a, score)
